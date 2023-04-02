@@ -5,25 +5,32 @@
 
 using namespace std;
 
+
+void reverseVector(vector<string>& vec)
+{
+  reverse(vec.begin(), vec.end());
+
+  for_each(vec.begin(), vec.end(), [](string& str){reverse(str.begin(), str.end()); });
+}
+
 void printVector(const vector<string>& v)
 {
-    for (auto it = v.crbegin(); it != v.crend(); ++it)
+    for (vector<string>::const_iterator it = v.cbegin(); it != v.cend(); ++it)
+    {
         cout << *it << " ";
+    }
     cout << endl;
-
 }
+
 
 int main()
 {
-	vector<string> v;
-	for (int i = v.size(); i < v.size(); ++i)
+    int n;
+    cin >> n;
+	vector<string> v(n);
+	for (int i = 0; i < n; ++i)
 		cin >> v[i];
 
-	for (vector<string>::iterator it = v.begin(); it != v.end(); ++it)
-    {
-        reverse(it->begin(), it->end());
-    }
-
-    printVector(v);
-   		
+    reverseVector(v);
+    printVector(v);	
 }
